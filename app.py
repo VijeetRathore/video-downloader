@@ -60,9 +60,11 @@ HTML_TEMPLATE = """
 def sanitize_filename(filename):
     return re.sub(r'[<>:"/\\|?*\x00-\x1F]', '_', filename).strip().strip('.')[:200]
 
+from flask import render_template  # Add this to your imports at the top
+
 @app.route('/')
 def index():
-    return render_template_string(HTML_TEMPLATE)
+    return render_template('index.html')
 
 @app.route('/download', methods=['POST'])
 def download():
